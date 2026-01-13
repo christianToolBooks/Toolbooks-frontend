@@ -1,4 +1,3 @@
-// lib/serverApiClient.ts
 import axios from "axios";
 import { getToken } from "next-auth/jwt";
 import { NextApiRequest } from "next";
