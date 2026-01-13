@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="40" viewBox="0 0 64 40">
+  <title>Mastercard logo</title>
+  <g fill="none" fill-rule="evenodd" transform="translate(4 4)">
+    <circle cx="16" cy="16" r="16" fill="#EB001B" />
+    <circle cx="32" cy="16" r="16" fill="#F79E1B" />
+    <path
+      d="M24 32c4.418 0 8-5.372 8-12s-3.582-12-8-12-8 5.372-8 12 3.582 12 8 12z"
+      fill="#FF5F00"
+    />
+  </g>
+</svg>
