@@ -1,13 +1,5 @@
-import {
-  FileManagerResponse,
-  FormattedFileItem,
-} from '@/src/types/fileManager';
-import { isValidUSPhone } from './validates';
 import { ExceptionType } from '@/src/types/bank-reconciliation';
-
-// ============================================
-// CURRENCY FORMATTING
-// ============================================
+import { isValidUSPhone } from './validates';
 
 /**
  * Formats a number as USD currency
@@ -35,10 +27,6 @@ export const formatCurrency = (
     maximumFractionDigits: options?.maximumFractionDigits ?? 2,
   }).format(numAmount);
 };
-
-// ============================================
-// DATE FORMATTING
-// ============================================
 
 /**
  * Formats a date string in a readable format
@@ -80,10 +68,6 @@ export const formatDate = (
   }
 };
 
-// ============================================
-// PHONE FORMATTING
-// ============================================
-
 /**
  * Formatted a phone number Adding +1 (US)
  * @param phone - phone number
@@ -112,9 +96,6 @@ export const formatUSPhone = (phone: string): string => {
   return `+1${cleanPhone}`
 }
 
-/**
- * Safe version of formatUSPhone that returns null on error
- */
 export const formatUSPhoneSafe = (phone: string): string | null => {
   try {
     return formatUSPhone(phone)
@@ -123,9 +104,7 @@ export const formatUSPhoneSafe = (phone: string): string | null => {
   }
 }
 
-/**
- * Formats a phone number for display with proper formatting
- */
+
 export const formatPhoneDisplay = (phone: string): string => {
   if (!phone) return ""
 
@@ -140,9 +119,6 @@ export const formatPhoneDisplay = (phone: string): string => {
   return phone
 }
 
-/**
- * Formats phone input as user types
- */
 export const formatPhoneInput = (value: string): string => {
   const numbers = value.replace(/\D/g, "")
   if (numbers.length === 0) return ""
@@ -169,49 +145,6 @@ export const getPhoneInfo = (phone: string) => {
   };
 };
 
-// ============================================
-// FILE FORMATTING
-// ============================================
-
-export const formatFileItem = (
-  file: FileManagerResponse
-): FormattedFileItem => {
-  const { url, key } = file;
-
-  const id = key.split('/')[0];
-  const filesIndex = key.indexOf('/files/');
-  const fileNamePart = key.substring(filesIndex + 7);
-  const lastDotIndex = fileNamePart.lastIndexOf('.');
-  const extension =
-    lastDotIndex !== -1 ? fileNamePart.substring(lastDotIndex + 1) : '';
-  const nameWithoutExtension =
-    lastDotIndex !== -1
-      ? fileNamePart.substring(0, lastDotIndex)
-      : fileNamePart;
-  const lastDashIndex = nameWithoutExtension.lastIndexOf('-');
-  const name =
-    lastDashIndex !== -1
-      ? nameWithoutExtension.substring(0, lastDashIndex)
-      : nameWithoutExtension;
-
-  return {
-    id,
-    url,
-    key,
-    name,
-    extension,
-  };
-};
-
-export const formattedFileItems = (
-  files: FileManagerResponse[]
-): FormattedFileItem[] => {
-  return files.map(formatFileItem);
-};
-
-// ============================================
-// BUSINESS TYPE FORMATTING
-// ============================================
 
 export function formatBusinessType(type: string): string {
   switch (type) {
@@ -228,9 +161,6 @@ export function formatBusinessType(type: string): string {
   }
 }
 
-// ============================================
-// TEXT/KEY FORMATTING
-// ============================================
 
 export function humanizeKey (
   raw: string,
